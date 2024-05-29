@@ -7,7 +7,7 @@ interface PropertyDetailProps {
 }
 
 const PropertyDetail = ({ property, handleClose }: PropertyDetailProps) => (
-  <DetailContainer hasProperty={!!property}>
+  <DetailContainer $hasProperty={!!property}>
     <p>home detail goes here</p>
     <button onClick={handleClose}>close</button>
   </DetailContainer>
