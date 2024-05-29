@@ -13,9 +13,21 @@ const Search = styled.input`
   width: 100%;
 `;
 
+const Container = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+const Main = styled.main`
+  flex: 1;
+`;
+
 const App: React.FC = () => {
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -35,20 +47,25 @@ const App: React.FC = () => {
     fetchProperties();
   }, []);
 
-  console.log("properties:", properties);
   return (
     <AppContainer>
       <Header />
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <>
-          <main>
+        <Container>
+          <Main>
             <Search placeholder="Search by Street, Neighborhood, City, Floor Plan" />
-            <PropertiesList properties={properties} />
-          </main>
-          <PropertyDetail />
-        </>
+            <PropertiesList
+              properties={properties}
+              onSelectProperty={(property) => setSelectedProperty(property)}
+            />
+          </Main>
+          <PropertyDetail
+            property={selectedProperty}
+            handleClose={() => setSelectedProperty(null)}
+          />
+        </Container>
       )}
     </AppContainer>
   );

@@ -4,14 +4,20 @@ import { Property } from "../../types";
 
 interface PropertiesListProps {
   properties: Property[];
+  onSelectProperty: (property: Property) => void;
 }
 
-const PropertiesList: React.FC<PropertiesListProps> = ({ properties }) => {
+const PropertiesList: React.FC<PropertiesListProps> = ({
+  properties,
+  onSelectProperty,
+}) => {
   return (
     <ListContainer>
       {properties.map((property, index) => (
         <li key={index}>
-          <PropertyButton>{property.streetAddress}</PropertyButton>
+          <PropertyButton onClick={() => onSelectProperty(property)}>
+            {property.streetAddress}
+          </PropertyButton>
         </li>
       ))}
     </ListContainer>
