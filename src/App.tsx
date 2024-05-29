@@ -4,9 +4,11 @@ import Header from "./components/Header/Header";
 import PropertiesList from "./components/PrpertiesLIst/PropertiesList";
 import { Property } from "./types";
 import PropertyDetail from "./components/PropertyDetail/PropertyDetail";
+import { device } from "./styles/breakpoints";
 
 const AppContainer = styled.div`
   padding-inline: 2rem;
+  position: relative;
 `;
 
 const Search = styled.input`
@@ -14,8 +16,10 @@ const Search = styled.input`
 `;
 
 const Container = styled.div`
-  display: flex;
-  gap: 1rem;
+  @media ${device.sm} {
+    display: flex;
+    gap: 1rem;
+  }
 `;
 
 const Main = styled.main`
