@@ -5,17 +5,19 @@ import PropertiesList from "./components/PrpertiesLIst/PropertiesList";
 import { Property } from "./types";
 import PropertyDetail from "./components/PropertyDetail/PropertyDetail";
 import { device } from "./styles/breakpoints";
+import { InnerContainer } from "./styles/shared";
+import { headerHeight } from "./styles/constants";
 
 const AppContainer = styled.div`
-  padding-inline: 2rem;
   position: relative;
+  padding-top: calc(${headerHeight} + 1.6rem);
 `;
 
 const Search = styled.input`
   width: 100%;
 `;
 
-const Container = styled.div`
+const LayoutContainer = styled(InnerContainer)`
   @media ${device.sm} {
     display: flex;
     gap: 1rem;
@@ -57,7 +59,7 @@ const App: React.FC = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <Container>
+        <LayoutContainer>
           <Main>
             <Search placeholder="Search by Street, Neighborhood, City, Floor Plan" />
             <PropertiesList
@@ -69,7 +71,7 @@ const App: React.FC = () => {
             property={selectedProperty}
             handleClose={() => setSelectedProperty(null)}
           />
-        </Container>
+        </LayoutContainer>
       )}
     </AppContainer>
   );
