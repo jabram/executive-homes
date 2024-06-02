@@ -24,8 +24,10 @@ const LayoutContainer = styled(InnerContainer)`
   }
 `;
 
-const Main = styled.main`
+const Main = styled.main<{ $hasSelectedProperty: boolean }>`
   flex: 1;
+  ${({ $hasSelectedProperty }) =>
+    $hasSelectedProperty && "padding-right: calc(50% + 1.6rem);"}
 `;
 
 const App: React.FC = () => {
@@ -60,11 +62,12 @@ const App: React.FC = () => {
         <p>Loading...</p>
       ) : (
         <LayoutContainer>
-          <Main>
+          <Main $hasSelectedProperty={!!selectedProperty}>
             <Search placeholder="Search by Street, Neighborhood, City, Floor Plan" />
             <PropertiesList
               properties={properties}
               onSelectProperty={(property) => setSelectedProperty(property)}
+              selectedProperty={selectedProperty}
             />
           </Main>
           <PropertyDetail

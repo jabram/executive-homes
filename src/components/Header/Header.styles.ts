@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { white } from "../../styles/colors";
 
 export const HeaderElement = styled.header`
   position: fixed;
@@ -7,6 +8,6 @@ export const HeaderElement = styled.header`
   left: 0;
   z-index: 999;
   padding-block: 0.8rem;
-  background: #fff;
+  background: ${white};
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 `;

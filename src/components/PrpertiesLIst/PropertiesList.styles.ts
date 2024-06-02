@@ -11,19 +11,3 @@ export const ListContainer = styled.ul`
     gap: 1.6rem;
   }
 `;
-
-export const PropertyButton = styled.button`
-  width: 100%;
-  margin-bottom: 1rem;
-  padding: 2rem; // temp
-  background: none;
-  cursor: pointer;
-
-  @media ${device.sm} {
-    margin-bottom: 0;
-  }
-
-  &:hover {
-    opacity: 0.7;
-  }
-`;

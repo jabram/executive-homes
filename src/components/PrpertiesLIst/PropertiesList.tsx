@@ -1,23 +1,28 @@
 import React from "react";
-import { ListContainer, PropertyButton } from "./PropertiesList.styles";
+import { ListContainer } from "./PropertiesList.styles";
 import { Property } from "../../types";
+import PropertyCard from "../PropertyCard/PropertyCard";
 
 interface PropertiesListProps {
   properties: Property[];
   onSelectProperty: (property: Property) => void;
+  selectedProperty: Property | null;
 }
 
 const PropertiesList: React.FC<PropertiesListProps> = ({
   properties,
   onSelectProperty,
+  selectedProperty,
 }) => {
   return (
     <ListContainer>
-      {properties.map((property, index) => (
-        <li key={index}>
-          <PropertyButton onClick={() => onSelectProperty(property)}>
-            {property.streetAddress}
-          </PropertyButton>
+      {properties.map((property) => (
+        <li key={property.streetAddress}>
+          <PropertyCard
+            property={property}
+            onSelectProperty={() => onSelectProperty(property)}
+            isSelected={selectedProperty === property}
+          />
         </li>
       ))}
     </ListContainer>
