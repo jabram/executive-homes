@@ -21,6 +21,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
     if (property.titleImage) {
       return (
         <TitleImage
+          $isSelected={isSelected}
           src={property.titleImage.url}
           alt={property.titleImage.title}
         />
@@ -28,6 +29,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
     } else if (property.floorPlan) {
       return (
         <TitleImage
+          $isSelected={isSelected}
           src={property.floorPlan.titleImage.url}
           alt={property.floorPlan.titleImage.title}
         />
@@ -35,7 +37,10 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
     } else {
       console.error("ERROR! no title image found!");
       return (
-        <TitleImage src="https://placehold.co/336x340?text=Missing+Image!" />
+        <TitleImage
+          $isSelected={isSelected}
+          src="https://placehold.co/336x340?text=Missing+Image!"
+        />
       );
     }
   };
@@ -43,11 +48,17 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
   return (
     <PropertyButton onClick={onSelectProperty} $isSelected={isSelected}>
       {getTitleImage()}
-      <TopStuff>
-        <p>top</p>
-        <p>stuff</p>
+      <TopStuff $isSelected={isSelected}>
+        <p>
+          <img src="/images/floor-plans.svg" alt="floor plan icon" />
+          <span>top</span>
+        </p>
+        <p>
+          <img src="/images/paintbrush.svg" alt="paintbrush icon" />
+          <span>stuff</span>
+        </p>
       </TopStuff>
-      <Details>
+      <Details $isSelected={isSelected}>
         <p>{property.constructionStatus}</p>
         <p>{property.price}</p>
         <p>{property.streetAddress}</p>

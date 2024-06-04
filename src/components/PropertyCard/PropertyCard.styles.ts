@@ -17,6 +17,7 @@ export const PropertyButton = styled.button<{ $isSelected: boolean }>`
   background: none;
   cursor: pointer;
   position: relative;
+  overflow: hidden; // this is so the TitleImage fits within the border when selected
 
   @media ${device.sm} {
     margin-bottom: 0;
@@ -27,17 +28,30 @@ export const PropertyButton = styled.button<{ $isSelected: boolean }>`
   }
 `;
 
-export const TitleImage = styled.img`
+export const TitleImage = styled.img<{ $isSelected: boolean }>`
   display: block;
-  width: 100%;
-  height: 100%;
+  ${({ $isSelected }) =>
+    $isSelected
+      ? `
+        width: calc(100% + 4px);  
+        height: calc(100% + 4px); 
+        position: relative; 
+        left: -2px; 
+        top: -2px;
+        `
+      : `
+        width: 100%;  
+        height: 100%;
+    `};
   border-radius: 8px;
   object-fit: cover;
 `;
 
 // TODO: come up with a better name once I know what this data means
-export const TopStuff = styled.div`
+export const TopStuff = styled.div<{ $isSelected: boolean }>`
   width: 100%;
+  padding: ${({ $isSelected }) =>
+    $isSelected ? "0.6rem 0.6rem 0.8rem" : "0.8rem"};
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   background: rgba(0, 0, 0, 0.2);
@@ -52,10 +66,15 @@ export const TopStuff = styled.div`
     font-size: 1.4rem;
     font-weight: 500;
     text-transform: uppercase;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
   }
 `;
 
-export const Details = styled.div`
+export const Details = styled.div<{ $isSelected: boolean }>`
   position: absolute;
   width: 100%;
   min-height: 50%;
@@ -65,6 +84,8 @@ export const Details = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 2.4rem 1.6rem 1.6rem;
+  padding: ${({ $isSelected }) =>
+    $isSelected ? "2.4rem 1.4rem 1.4rem" : "2.4rem 1.6rem 1.6rem"};
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   background: rgba(0, 0, 0, 0.2);
