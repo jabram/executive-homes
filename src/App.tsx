@@ -59,6 +59,7 @@ const App: React.FC = () => {
 
     fetchProperties();
   }, []);
+
   return (
     <AppContainer>
       <Header />

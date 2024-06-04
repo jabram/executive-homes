@@ -11,8 +11,14 @@ export const DetailContainer = styled.div<{ $hasProperty: boolean }>`
   width: 100%;
   height: calc(100vh - ${headerHeight});
   background: white;
+  overflow: auto;
+  padding-bottom: 3rem;
 
   @media ${device.sm} {
     width: 50%;
   }
+`;
+
+export const TitleImage = styled.img`
+  width: 100%;
 `;

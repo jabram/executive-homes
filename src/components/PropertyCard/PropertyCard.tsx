@@ -5,6 +5,7 @@ import {
   TopStuff,
 } from "./PropertyCard.styles";
 import { Property } from "../../types";
+import { getTitleImageAttributesFromProperty } from "../../utils/getTitleImageAttributesFromProperty";
 
 interface PropertyCardProps {
   property: Property;
@@ -17,37 +18,13 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
   onSelectProperty,
   isSelected,
 }) => {
-  const getTitleImage = () => {
-    if (property.titleImage) {
-      return (
-        <TitleImage
-          $isSelected={isSelected}
-          src={property.titleImage.url}
-          alt={property.titleImage.title}
-        />
-      );
-    } else if (property.floorPlan) {
-      return (
-        <TitleImage
-          $isSelected={isSelected}
-          src={property.floorPlan.titleImage.url}
-          alt={property.floorPlan.titleImage.title}
-        />
-      );
-    } else {
-      console.error("ERROR! no title image found!");
-      return (
-        <TitleImage
-          $isSelected={isSelected}
-          src="https://placehold.co/336x340?text=Missing+Image!"
-        />
-      );
-    }
-  };
-
   return (
     <PropertyButton onClick={onSelectProperty} $isSelected={isSelected}>
-      {getTitleImage()}
+      <TitleImage
+        $isSelected={isSelected}
+        src={getTitleImageAttributesFromProperty(property).src}
+        alt={getTitleImageAttributesFromProperty(property).alt}
+      />
       <TopStuff $isSelected={isSelected}>
         <p>
           <img src="/images/floor-plans.svg" alt="floor plan icon" />
