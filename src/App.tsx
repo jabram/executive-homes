@@ -15,6 +15,7 @@ const AppContainer = styled.div`
 
 const Search = styled.input`
   width: 100%;
+  font-family: "Montserrat", sans-serif;
 `;
 
 const LayoutContainer = styled(InnerContainer)`
@@ -44,7 +45,11 @@ const App: React.FC = () => {
           "https://website-api.dev.cloud.executivehomes.com/properties?market=tulsa"
         );
         const propertiesResponse = await response.json();
-        setProperties(propertiesResponse);
+        const filteredProperties = propertiesResponse.filter(
+          (property: Property) =>
+            property.constructionStatus !== "Available Lot"
+        );
+        setProperties(filteredProperties);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching properties:", error);
